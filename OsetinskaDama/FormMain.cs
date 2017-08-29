@@ -24,29 +24,28 @@ namespace OsetinskaDama
         private PictureBox[,] pieces;
         private PictureBox pieceFocused;
         private ArrayList piecesSelected = new ArrayList();
+        private ArrayList movesDone = new ArrayList();
+        private ArrayList movesUndone = new ArrayList();
         private Move aiMove;
         private bool aiMoveComputingDone;
         private bool aiMoveTimerElapsed;
-        private ArrayList movesDone = new ArrayList();
-        private ArrayList movesUndone = new ArrayList();
-        private System.Windows.Forms.Timer gameTimer;
+        private int playerWhiteControls;
+        private int playerBlackControls;
         private uint gameTimerValue = 0;
         private uint gameSteps = 0;
         private bool gameRunning = false;
         private bool isPieceSelected = false;
         private bool isPieceSelectError = false;
         private bool pieceClickListening = false;
-        private int playerWhiteControls;
-        private int playerBlackControls;
         private bool showPossibleMoves = false;
         private int minComputerPlayTime = 1000;
         private int computerWhiteLevel = 2;
         private int computerBlackLevel = 2;
         private int bestMoveAILevelDefault = 5;
         private int evalPiecePositionMinLevel = 3;
+        private System.Windows.Forms.Timer gameTimer;
         private System.Timers.Timer aiTimer;
         private BackgroundWorker aiWorker;
-
         static readonly object _locker = new object();
 
         public FormMain(GameRules rules, Desk desk, Engine engine)
