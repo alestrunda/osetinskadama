@@ -50,9 +50,11 @@ namespace OsetinskaDama
 
         public FormMain(GameRules rules, Desk desk, Engine engine)
         {
+            Application.ApplicationExit += new EventHandler(OnApplicationExit);
             this.rules = rules;
             this.desk = desk;
             this.engine = engine;
+
             pieces = new PictureBox[rules.getDeskSize(), rules.getDeskSize()];
             playerWhiteControls = GameVar.PLAYER_HUMAN;
             playerBlackControls = GameVar.PLAYER_HUMAN;
@@ -1065,6 +1067,13 @@ namespace OsetinskaDama
                 return;
             }
             makeAIMove();
+        }
+
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            //make sure all threads are stopped before exit
+            cancelAIComputing();
+            gameTimer.Dispose();
         }
 
         // Main window resize
