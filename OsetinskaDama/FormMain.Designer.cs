@@ -659,6 +659,7 @@
             this.tableDesk.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.05295F));
             this.tableDesk.Size = new System.Drawing.Size(490, 491);
             this.tableDesk.TabIndex = 5;
+            this.tableDesk.Paint += new System.Windows.Forms.PaintEventHandler(this.tableDesk_Paint);
             // 
             // tableDeskBarHorizontal
             // 
@@ -685,6 +686,7 @@
             this.tableDeskBarHorizontal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableDeskBarHorizontal.Size = new System.Drawing.Size(507, 17);
             this.tableDeskBarHorizontal.TabIndex = 4;
+            this.tableDeskBarHorizontal.Resize += new System.EventHandler(this.tableDeskBarHorizontal_Resize);
             // 
             // label14
             // 
@@ -784,8 +786,8 @@
             this.MinimumSize = new System.Drawing.Size(600, 480);
             this.Name = "FormMain";
             this.Text = "Osetinská dáma";
+            this.ResizeEnd += new System.EventHandler(this.formMain_ResizeEnd);
             this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.FormMain_HelpRequested);
-            this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.tableGame.ResumeLayout(false);

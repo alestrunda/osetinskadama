@@ -111,15 +111,20 @@ namespace OsetinskaDama
             return piece;
         }
 
+        private void setActivePlayerBox(int player)
+        {
+            PictureBox currentPlayerImage = player == GameVar.PLAYER_WHITE ? playerWhiteImage : playerBlackImage;
+            groupPlayers.Refresh();
+            drawPictureBoxControl(currentPlayerImage, Properties.Resources.piece_control_select);
+        }
+
         private void setActivePlayer(int player, bool autorunAI = true, bool refreshPlayerControl = true)
         {
             addGameNotice((player == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text) + " on turn");
 
             if (refreshPlayerControl)       //refresh pieces signalizing which player is on turn
             {
-                PictureBox currentPlayerImage = player == GameVar.PLAYER_WHITE ? playerWhiteImage : playerBlackImage;
-                groupPlayers.Refresh();
-                drawPictureBoxControl(currentPlayerImage, Properties.Resources.piece_control_select);
+                setActivePlayerBox(player);
             }
 
             if (!isComputerOnTurn())
@@ -1076,15 +1081,6 @@ namespace OsetinskaDama
             gameTimer.Dispose();
         }
 
-        // Main window resize
-        private void FormMain_Resize(object sender, EventArgs e)
-        {
-            int size = tableDeskBarHorizontal.Size.Width - tableDeskBarHorizontal.Size.Height;
-            Size newSize = new Size(size, size);
-            tableDeskContainer.Size = newSize;
-            tableDesk.Size = newSize;
-        }
-
         // Main menu item "About"
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1192,6 +1188,33 @@ namespace OsetinskaDama
             int aiLevel = Math.Max(Math.Max(computerWhiteLevel, computerBlackLevel), bestMoveAILevelDefault);
             setAILevel(aiLevel);
             setupAIComputing();
+        }
+
+        // FormMain resizeEnd event
+        private void formMain_ResizeEnd(object sender, EventArgs e)
+        {
+            // resizing main window removes all drawing
+            if (!gameRunning)
+                return;
+            isPieceSelected = false;        // force human make move from the beginning
+            setActivePlayerBox(desk.getCurrentPlayer());        // redraw active player box
+        }
+
+        // tableDesk paint event
+        private void tableDesk_Paint(object sender, PaintEventArgs e)
+        {
+            OnResize(EventArgs.Empty);
+        }
+
+        // Desk's horizontal bar resize event
+        private void tableDeskBarHorizontal_Resize(object sender, EventArgs e)
+        {
+            int width = tableDeskBarHorizontal.Size.Width - tableDeskBarHorizontal.Size.Height;
+            if (tableDeskContainer.Width == width)
+                return;
+            Size newSize = new Size(width, width);
+            tableDeskContainer.Size = newSize;
+            tableDesk.Size = newSize;
         }
     }
 }
