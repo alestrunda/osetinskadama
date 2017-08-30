@@ -74,7 +74,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(325, 198);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(325, 186);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel3
@@ -86,12 +86,12 @@
             this.panel3.Controls.Add(this.computerBlackLevel);
             this.panel3.Location = new System.Drawing.Point(165, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(156, 192);
+            this.panel3.Size = new System.Drawing.Size(156, 180);
             this.panel3.TabIndex = 1;
             // 
             // playerBlackName
             // 
-            this.playerBlackName.Location = new System.Drawing.Point(8, 82);
+            this.playerBlackName.Location = new System.Drawing.Point(8, 83);
             this.playerBlackName.Name = "playerBlackName";
             this.playerBlackName.Size = new System.Drawing.Size(129, 20);
             this.playerBlackName.TabIndex = 11;
@@ -99,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 105);
+            this.label3.Location = new System.Drawing.Point(9, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 9;
@@ -147,7 +147,7 @@
             // 
             // computerBlackLevel
             // 
-            this.computerBlackLevel.Location = new System.Drawing.Point(9, 121);
+            this.computerBlackLevel.Location = new System.Drawing.Point(9, 135);
             this.computerBlackLevel.Name = "computerBlackLevel";
             this.computerBlackLevel.Size = new System.Drawing.Size(104, 45);
             this.computerBlackLevel.TabIndex = 6;
@@ -161,12 +161,12 @@
             this.panel1.Controls.Add(this.computerWhiteLevel);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(156, 192);
+            this.panel1.Size = new System.Drawing.Size(156, 180);
             this.panel1.TabIndex = 0;
             // 
             // playerWhiteName
             // 
-            this.playerWhiteName.Location = new System.Drawing.Point(8, 82);
+            this.playerWhiteName.Location = new System.Drawing.Point(8, 83);
             this.playerWhiteName.Name = "playerWhiteName";
             this.playerWhiteName.Size = new System.Drawing.Size(129, 20);
             this.playerWhiteName.TabIndex = 10;
@@ -174,7 +174,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 105);
+            this.label2.Location = new System.Drawing.Point(10, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 9;
@@ -222,7 +222,7 @@
             // 
             // computerWhiteLevel
             // 
-            this.computerWhiteLevel.Location = new System.Drawing.Point(10, 121);
+            this.computerWhiteLevel.Location = new System.Drawing.Point(10, 135);
             this.computerWhiteLevel.Name = "computerWhiteLevel";
             this.computerWhiteLevel.Size = new System.Drawing.Size(104, 45);
             this.computerWhiteLevel.TabIndex = 6;
@@ -230,7 +230,7 @@
             // checkPossibleMoves
             // 
             this.checkPossibleMoves.AutoSize = true;
-            this.checkPossibleMoves.Location = new System.Drawing.Point(11, 204);
+            this.checkPossibleMoves.Location = new System.Drawing.Point(11, 195);
             this.checkPossibleMoves.Name = "checkPossibleMoves";
             this.checkPossibleMoves.Size = new System.Drawing.Size(128, 17);
             this.checkPossibleMoves.TabIndex = 6;
@@ -240,7 +240,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 227);
+            this.label5.Location = new System.Drawing.Point(8, 218);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 13);
             this.label5.TabIndex = 8;
@@ -248,7 +248,7 @@
             // 
             // computerPlayTime
             // 
-            this.computerPlayTime.Location = new System.Drawing.Point(148, 224);
+            this.computerPlayTime.Location = new System.Drawing.Point(148, 215);
             this.computerPlayTime.Name = "computerPlayTime";
             this.computerPlayTime.Size = new System.Drawing.Size(100, 20);
             this.computerPlayTime.TabIndex = 9;
@@ -256,7 +256,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(254, 227);
+            this.label6.Location = new System.Drawing.Point(254, 218);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 13);
             this.label6.TabIndex = 10;
@@ -265,7 +265,7 @@
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSave.Location = new System.Drawing.Point(74, 264);
+            this.buttonSave.Location = new System.Drawing.Point(74, 254);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(170, 35);
             this.buttonSave.TabIndex = 11;
@@ -278,7 +278,7 @@
             this.AcceptButton = this.buttonSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 307);
+            this.ClientSize = new System.Drawing.Size(325, 301);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.computerPlayTime);
