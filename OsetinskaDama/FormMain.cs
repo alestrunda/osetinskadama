@@ -1141,8 +1141,7 @@ namespace OsetinskaDama
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bool setAIButtons = gameRunning;
-            bool cleanDesk = false;
-            stopPlayers(cleanDesk, setAIButtons);
+            cancelAIComputing(setAIButtons);
 
             formNewGame.setupFormData(playerWhiteControls, playerBlackControls, playerWhiteName.Text, playerBlackName.Text);
             formNewGame.ShowDialog(this);
