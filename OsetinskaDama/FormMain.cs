@@ -38,7 +38,7 @@ namespace OsetinskaDama
         private bool isPieceSelectError = false;
         private bool pieceClickListening = false;
         private bool showPossibleMoves = false;
-        private int minComputerPlayTime = 1000;
+        private int minComputerPlayTime = 1000;     //ms
         private int computerWhiteLevel = 2;
         private int computerBlackLevel = 2;
         private int bestMoveAILevelDefault = 5;
@@ -160,7 +160,13 @@ namespace OsetinskaDama
 
         private void startAIComputing(object sender, DoWorkEventArgs e)
         {
-            aiMove = engine.getBestMove(desk, rules);
+            // run ai with its own desk, while computing the desk is modified
+            Desk aiDesk = new Desk(rules.getDeskSize(), rules.getPiecesPerPlayer());
+            aiDesk.setPlayerPieces(desk.getPlayerFields(GameVar.PLAYER_WHITE), GameVar.PLAYER_WHITE);
+            aiDesk.setPlayerPieces(desk.getPlayerFields(GameVar.PLAYER_BLACK), GameVar.PLAYER_BLACK);
+            aiDesk.setCurrentPlayer(desk.getCurrentPlayer());
+
+            aiMove = engine.getBestMove(aiDesk, rules);
         }
 
         private void aiComputingFinished(object sender, RunWorkerCompletedEventArgs e)
@@ -187,8 +193,10 @@ namespace OsetinskaDama
                 aiTimer.Stop();
             if (aiWorker != null)
             {
+                aiWorker.CancelAsync();
                 aiWorker.RunWorkerCompleted -= aiComputingFinished;
                 aiWorker.Dispose();
+                aiWorker = null;
             }
             if (handleAIButtons)
             {
@@ -202,6 +210,7 @@ namespace OsetinskaDama
         private void setupAIComputing()
         {
             aiWorker = new BackgroundWorker();
+            aiWorker.WorkerSupportsCancellation = true;
             aiWorker.DoWork += startAIComputing;
             aiWorker.RunWorkerCompleted += aiComputingFinished;
             aiWorker.RunWorkerAsync();

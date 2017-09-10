@@ -228,7 +228,17 @@ namespace OsetinskaDama
                 fields[pieces[i, 0], pieces[i, 1]] = field;
                 addPlayerField(pieces[i, 0], pieces[i, 1], player);
             }
+        }
 
+        public void setPlayerPieces(ArrayList pieces, short player)
+        {
+            int piecesCnt = pieces.Count;
+            int field = player == GameVar.PLAYER_WHITE ? GameVar.FIELD_WHITE : GameVar.FIELD_BLACK;
+            for (int i = 0; i < piecesCnt; i++)
+            {
+                fields[(int)(pieces[i] as Array).GetValue(0), (int)(pieces[i] as Array).GetValue(1)] = field;
+                addPlayerField((int)(pieces[i] as Array).GetValue(0), (int)(pieces[i] as Array).GetValue(1), player);
+            }
         }
 
         public void removePlayerField(int x, int y, short player)
@@ -253,7 +263,7 @@ namespace OsetinskaDama
             fieldsCnt = fields.Count;
             fieldsCntBack = fieldsCnt;
 
-            //loop player fields, remove seleted field
+            //loop player fields, remove selected field
             for (int i = 0; i < fieldsCnt; i++)
             {
                 if ((int)(fields[i] as Array).GetValue(0) == x && (int)(fields[i] as Array).GetValue(1) == y)
