@@ -835,7 +835,7 @@ namespace OsetinskaDama
 
         public void addGameNotice(String notice)
         {
-            statusBar.Items.Insert(0, "- " + notice);
+            informationBox.Items.Insert(0, "- " + notice);
         }
 
         private void addGameHistoryMove(Move move)
@@ -845,7 +845,7 @@ namespace OsetinskaDama
 
         private void clearGameListBoxes()
         {
-            statusBar.Items.Clear();
+            informationBox.Items.Clear();
             gameMovesHistory.Items.Clear();
         }
 

@@ -45,12 +45,11 @@
             this.tableGame = new System.Windows.Forms.TableLayoutPanel();
             this.panelGameInfo = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.statusBar = new System.Windows.Forms.ListBox();
+            this.informationBox = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonRedo = new System.Windows.Forms.Button();
             this.gameMovesHistory = new System.Windows.Forms.ListBox();
             this.buttonUndo = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupGame = new System.Windows.Forms.GroupBox();
             this.buttonContinueAI = new System.Windows.Forms.Button();
             this.buttonStopAI = new System.Windows.Forms.Button();
@@ -243,43 +242,42 @@
             // panelGameInfo
             // 
             this.panelGameInfo.Controls.Add(this.label3);
-            this.panelGameInfo.Controls.Add(this.statusBar);
+            this.panelGameInfo.Controls.Add(this.informationBox);
             this.panelGameInfo.Controls.Add(this.groupBox1);
             this.panelGameInfo.Controls.Add(this.groupGame);
             this.panelGameInfo.Controls.Add(this.groupPlayers);
             this.panelGameInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGameInfo.Location = new System.Drawing.Point(510, 3);
             this.panelGameInfo.Name = "panelGameInfo";
-            this.panelGameInfo.Size = new System.Drawing.Size(290, 408);
+            this.panelGameInfo.Size = new System.Drawing.Size(290, 440);
             this.panelGameInfo.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 342);
+            this.label3.Location = new System.Drawing.Point(4, 374);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Status bar";
+            this.label3.Text = "Information box";
             // 
-            // statusBar
+            // informationBox
             // 
-            this.statusBar.FormattingEnabled = true;
-            this.statusBar.Location = new System.Drawing.Point(7, 358);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.statusBar.Size = new System.Drawing.Size(276, 43);
-            this.statusBar.TabIndex = 9;
+            this.informationBox.FormattingEnabled = true;
+            this.informationBox.Location = new System.Drawing.Point(7, 390);
+            this.informationBox.Name = "informationBox";
+            this.informationBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.informationBox.Size = new System.Drawing.Size(276, 43);
+            this.informationBox.TabIndex = 9;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.buttonRedo);
             this.groupBox1.Controls.Add(this.gameMovesHistory);
             this.groupBox1.Controls.Add(this.buttonUndo);
-            this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Location = new System.Drawing.Point(7, 239);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 100);
+            this.groupBox1.Size = new System.Drawing.Size(276, 127);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "History";
@@ -299,7 +297,7 @@
             this.gameMovesHistory.FormattingEnabled = true;
             this.gameMovesHistory.Location = new System.Drawing.Point(10, 48);
             this.gameMovesHistory.Name = "gameMovesHistory";
-            this.gameMovesHistory.Size = new System.Drawing.Size(254, 43);
+            this.gameMovesHistory.Size = new System.Drawing.Size(254, 69);
             this.gameMovesHistory.TabIndex = 6;
             this.gameMovesHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gameMovesHistory_MouseDoubleClick);
             // 
@@ -312,24 +310,6 @@
             this.buttonUndo.Text = "Undo";
             this.buttonUndo.UseVisualStyleBackColor = true;
             this.buttonUndo.Click += new System.EventHandler(this.buttonUndo_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "dghj",
-            "dghj",
-            "dghj",
-            "dghj",
-            "dghj",
-            "dghk",
-            "djk",
-            "dghk",
-            "d"});
-            this.listBox1.Location = new System.Drawing.Point(13, 106);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(276, 43);
-            this.listBox1.TabIndex = 6;
             // 
             // groupGame
             // 
@@ -783,7 +763,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuMain;
-            this.MinimumSize = new System.Drawing.Size(600, 480);
+            this.MinimumSize = new System.Drawing.Size(600, 510);
             this.Name = "FormMain";
             this.Text = "Osetinská dáma";
             this.ResizeEnd += new System.EventHandler(this.formMain_ResizeEnd);
@@ -840,12 +820,11 @@
         private System.Windows.Forms.Label labelStepsValue;
         private System.Windows.Forms.Label labelSteps;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox statusBar;
+        private System.Windows.Forms.ListBox informationBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonRedo;
         private System.Windows.Forms.ListBox gameMovesHistory;
         private System.Windows.Forms.Button buttonUndo;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableDeskBarHorizontal;
         private System.Windows.Forms.Label label14;
