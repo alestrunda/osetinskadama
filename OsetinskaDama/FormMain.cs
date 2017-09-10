@@ -160,7 +160,7 @@ namespace OsetinskaDama
 
         private void startAIComputing(object sender, DoWorkEventArgs e)
         {
-            aiMove = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            aiMove = engine.getBestMove(desk, rules);
         }
 
         private void aiComputingFinished(object sender, RunWorkerCompletedEventArgs e)
@@ -330,9 +330,9 @@ namespace OsetinskaDama
             }
         }
 
-        private bool wasClickedOnOwnPiece(int player, int[] coords)
+        private bool wasClickedOnOwnPiece(short player, int[] coords)
         {
-            ArrayList currentPlayerFields = player == GameVar.PLAYER_WHITE ? desk.getWhiteFields() : desk.getBlackFields();
+            ArrayList currentPlayerFields = desk.getPlayerFields(player);
             int fieldsLen = currentPlayerFields.Count;
             for (int i = 0; i < fieldsLen; i++)
             {
@@ -589,7 +589,7 @@ namespace OsetinskaDama
             {
                 labelHead = "Congratulations";
                 labelWinner = (gameResult == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text) + " won!";
-                labelGameDetails += ", " + Math.Abs(desk.getBlackFields().Count - desk.getWhiteFields().Count) + " piece(s) left";
+                labelGameDetails += ", " + Math.Abs(desk.getPlayerFields(GameVar.PLAYER_WHITE).Count - desk.getPlayerFields(GameVar.PLAYER_BLACK).Count) + " piece(s) left";
             }
             else      // draw
             {
@@ -655,10 +655,10 @@ namespace OsetinskaDama
                 cleanDeskPieceSelections();
         }
 
-        private void updatePlayerPiecesCnt(int player)
+        private void updatePlayerPiecesCnt(short player)
         {
-            int fieldsCnt = player == GameVar.PLAYER_WHITE ? desk.getWhiteFields().Count : desk.getBlackFields().Count;
-            setPlayerPcsCnt(player, fieldsCnt);
+            int fieldsCnt = desk.getPlayerFields(player).Count;
+            setPlayerPcsCntLabel(player, fieldsCnt);
         }
 
         private void decrementGameSteps()
@@ -751,10 +751,10 @@ namespace OsetinskaDama
             desk.setPlayerPieces(rules.getInitPiecesWhite(), GameVar.PLAYER_WHITE);
             desk.setPlayerPieces(rules.getInitPiecesBlack(), GameVar.PLAYER_BLACK);
             desk.setCurrentPlayer(rules.getStartingPlayer());
-            setPlayerPieces(GameVar.PLAYER_WHITE, desk.getWhiteFields());
-            setPlayerPieces(GameVar.PLAYER_BLACK, desk.getBlackFields());
-            setPlayerPcsCnt(GameVar.PLAYER_WHITE, desk.getWhiteFields().Count);
-            setPlayerPcsCnt(GameVar.PLAYER_BLACK, desk.getBlackFields().Count);
+            setPlayerPieces(GameVar.PLAYER_WHITE, desk.getPlayerFields(GameVar.PLAYER_WHITE));
+            setPlayerPieces(GameVar.PLAYER_BLACK, desk.getPlayerFields(GameVar.PLAYER_BLACK));
+            setPlayerPcsCntLabel(GameVar.PLAYER_WHITE, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            setPlayerPcsCntLabel(GameVar.PLAYER_BLACK, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         private void setNewGameFormData()
@@ -842,8 +842,8 @@ namespace OsetinskaDama
 
         private void resetGameInfo()
         {
-            setPlayerPcsCnt(GameVar.PLAYER_WHITE, 0);
-            setPlayerPcsCnt(GameVar.PLAYER_BLACK, 0);
+            setPlayerPcsCntLabel(GameVar.PLAYER_WHITE, 0);
+            setPlayerPcsCntLabel(GameVar.PLAYER_BLACK, 0);
             gameSteps = 0;
             printGameSteps();
             printGameTimer();
@@ -857,10 +857,10 @@ namespace OsetinskaDama
             showGameRulesForm();
         }
 
-        private void setPlayerPcsCnt(int player, int cnt)
+        private void setPlayerPcsCntLabel(int player, int cnt)
         {
-            System.Windows.Forms.Label target = player == GameVar.PLAYER_WHITE ? playerWhitePcsCnt : playerBlackPcsCnt;
-            target.Text = $"{cnt.ToString()} piece(s)";
+            System.Windows.Forms.Label targetLabel = player == GameVar.PLAYER_WHITE ? playerWhitePcsCnt : playerBlackPcsCnt;
+            targetLabel.Text = $"{cnt.ToString()} piece(s)";
         }
 
         private void showGameRulesForm()

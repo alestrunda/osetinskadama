@@ -116,8 +116,8 @@ namespace OsetinskaDama
 
         public bool isGameEnd(Desk desk)
         {
-            int fieldsBlackCnt = desk.getBlackFields().Count;
-            int fieldsWhiteCnt = desk.getWhiteFields().Count;
+            int fieldsBlackCnt = desk.getPlayerFields(GameVar.PLAYER_BLACK).Count;
+            int fieldsWhiteCnt = desk.getPlayerFields(GameVar.PLAYER_WHITE).Count;
             if (fieldsBlackCnt == 0 || fieldsWhiteCnt == 0)
                 return true;
             if (getPossibleMoves(desk, GameVar.PLAYER_WHITE, true).Count > 0)
@@ -154,15 +154,15 @@ namespace OsetinskaDama
 
         public int getGameEvaluation(Desk desk, short player)
         {
-            int whitePiecesCnt = desk.getWhiteFields().Count;
-            int blackPiecesCnt = desk.getBlackFields().Count;
+            int whitePiecesCnt = desk.getPlayerFields(GameVar.PLAYER_WHITE).Count;
+            int blackPiecesCnt = desk.getPlayerFields(GameVar.PLAYER_BLACK).Count;
             int piecesDifference = 0, piecesPositionVal = 0, x, y;
 
             //white player
             if (player == GameVar.PLAYER_WHITE)
             {
                 if (evalPiecePosition)
-                    piecesPositionVal += getPiecesPositionEvaluation(desk.getWhiteFields());
+                    piecesPositionVal += getPiecesPositionEvaluation(desk.getPlayerFields(GameVar.PLAYER_WHITE));
                 if (blackPiecesCnt == 0 && whitePiecesCnt > 0)
                     return int.MaxValue;
                 if (whitePiecesCnt == 0 && blackPiecesCnt > 0)
@@ -173,7 +173,7 @@ namespace OsetinskaDama
             else       //black player
             {
                 if (evalPiecePosition)
-                    piecesPositionVal += getPiecesPositionEvaluation(desk.getBlackFields());
+                    piecesPositionVal += getPiecesPositionEvaluation(desk.getPlayerFields(GameVar.PLAYER_BLACK));
                 if (whitePiecesCnt == 0 && blackPiecesCnt > 0)
                     return int.MaxValue;
                 if (blackPiecesCnt == 0 && whitePiecesCnt > 0)
@@ -317,11 +317,11 @@ namespace OsetinskaDama
             //get current player fields
             if (currentPlayer == GameVar.PLAYER_WHITE)
             {
-                playerFields = desk.getWhiteFields();
+                playerFields = desk.getPlayerFields(GameVar.PLAYER_WHITE);
             }
             else if (currentPlayer == GameVar.PLAYER_BLACK)
             {
-                playerFields = desk.getBlackFields();
+                playerFields = desk.getPlayerFields(GameVar.PLAYER_BLACK);
             }
 
             //make player_fields_copy, because while move inspected player_fields change

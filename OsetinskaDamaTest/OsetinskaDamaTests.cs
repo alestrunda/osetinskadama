@@ -42,8 +42,8 @@ namespace OsetinskaDamaTest
             desk.setPlayerPieces(rules.getInitPiecesBlack(), GameVar.PLAYER_BLACK);
 
             //Assert
-            Assert.AreEqual(21, desk.getWhiteFields().Count);
-            Assert.AreEqual(21, desk.getBlackFields().Count);
+            Assert.AreEqual(21, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(21, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -143,8 +143,8 @@ namespace OsetinskaDamaTest
             desk.makeMove(move);
 
             //Assert
-            Assert.AreEqual(21, desk.getWhiteFields().Count);
-            Assert.AreEqual(21, desk.getBlackFields().Count);
+            Assert.AreEqual(21, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(21, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -261,8 +261,8 @@ namespace OsetinskaDamaTest
             desk.makeMove(move);
 
             //Assert
-            Assert.AreEqual(21, desk.getWhiteFields().Count);
-            Assert.AreEqual(1, desk.getBlackFields().Count);
+            Assert.AreEqual(21, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
 
             int[,] fields = desk.getFields();
             Assert.AreEqual(fields[3, 2], GameVar.FIELD_EMPTY);
@@ -327,8 +327,8 @@ namespace OsetinskaDamaTest
             desk.makeMove(move);
 
             //Assert
-            Assert.AreEqual(1, desk.getWhiteFields().Count);
-            Assert.AreEqual(0, desk.getBlackFields().Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(0, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
 
             int[,] fields = desk.getFields();
             Assert.AreEqual(fields[3, 0], GameVar.FIELD_EMPTY);
@@ -678,15 +678,15 @@ namespace OsetinskaDamaTest
             desk.setField(5, 4, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
             desk.makeMove(ai_move);
 
             //Assert
             Assert.AreEqual(0, ai_move.getTo()[0]);
             Assert.AreEqual(3, ai_move.getTo()[1]);
 
-            Assert.AreEqual(1, desk.getWhiteFields().Count);
-            Assert.AreEqual(1, desk.getBlackFields().Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -722,15 +722,15 @@ namespace OsetinskaDamaTest
             desk.setField(1, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
             desk.makeMove(ai_move);
 
             //Assert
             Assert.AreEqual(6, ai_move.getTo()[0]);
             Assert.AreEqual(6, ai_move.getTo()[1]);
 
-            Assert.AreEqual(1, desk.getWhiteFields().Count);
-            Assert.AreEqual(2, desk.getBlackFields().Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(2, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -766,15 +766,15 @@ namespace OsetinskaDamaTest
             desk.setField(3, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
             desk.makeMove(ai_move);
 
             //Assert
             Assert.AreEqual(1, ai_move.getTo()[0]);
             Assert.AreEqual(3, ai_move.getTo()[1]);
 
-            Assert.AreEqual(1, desk.getWhiteFields().Count);
-            Assert.AreEqual(2, desk.getBlackFields().Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(2, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -812,15 +812,15 @@ namespace OsetinskaDamaTest
             desk.setField(2, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
             desk.makeMove(ai_move);
 
             //Assert
             Assert.AreEqual(6, ai_move.getTo()[0]);
             Assert.AreEqual(6, ai_move.getTo()[1]);
 
-            Assert.AreEqual(2, desk.getWhiteFields().Count);
-            Assert.AreEqual(2, desk.getBlackFields().Count);
+            Assert.AreEqual(2, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(2, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -859,7 +859,7 @@ namespace OsetinskaDamaTest
             desk.setField(2, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
             desk.makeMove(ai_move);
 
             //Assert
@@ -870,8 +870,8 @@ namespace OsetinskaDamaTest
             Assert.AreEqual(true, correct_x_found);
             Assert.AreEqual(5, ai_move.getTo()[1]);
 
-            Assert.AreEqual(4, desk.getWhiteFields().Count);
-            Assert.AreEqual(1, desk.getBlackFields().Count);
+            Assert.AreEqual(4, desk.getPlayerFields(GameVar.PLAYER_WHITE).Count);
+            Assert.AreEqual(1, desk.getPlayerFields(GameVar.PLAYER_BLACK).Count);
         }
 
         [TestMethod]
@@ -910,7 +910,7 @@ namespace OsetinskaDamaTest
             desk.setField(6, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.AreEqual(0, ai_move.getTo()[0]);
@@ -953,7 +953,7 @@ namespace OsetinskaDamaTest
             desk.setField(3, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.AreEqual(0, ai_move.getTo()[0]);
@@ -996,7 +996,7 @@ namespace OsetinskaDamaTest
             desk.setField(5, 1, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.AreEqual(4, ai_move.getTo()[0]);
@@ -1039,7 +1039,7 @@ namespace OsetinskaDamaTest
             desk.setField(0, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.AreEqual(6, ai_move.getTo()[0]);
@@ -1080,7 +1080,7 @@ namespace OsetinskaDamaTest
             desk.setPlayerPieces(rules.getInitPiecesBlack(), GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.IsTrue(ai_move.getTo()[0] == 0 || ai_move.getTo()[0] == 6);
@@ -1122,7 +1122,7 @@ namespace OsetinskaDamaTest
             desk.setField(0, 6, GameVar.PLAYER_BLACK);
 
             //Act
-            Move ai_move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move ai_move = engine.getBestMove(desk, rules);
 
             //Assert
             Assert.AreEqual(1, ai_move.getTo()[0]);
@@ -1162,7 +1162,7 @@ namespace OsetinskaDamaTest
             desk.setField(3, 1, GameVar.PLAYER_BLACK);
 
             //Act
-            Move move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move move = engine.getBestMove(desk, rules);
             int game_end = engine.getMovesInspectedCnt();
 
             //Assert
@@ -1207,7 +1207,7 @@ namespace OsetinskaDamaTest
             desk.setField(6, 0, GameVar.PLAYER_BLACK);
 
             //Act
-            Move move = engine.getBestMove(desk, rules, desk.getCurrentPlayer());
+            Move move = engine.getBestMove(desk, rules);
             int game_end = engine.getMovesInspectedCnt();
 
             //Assert

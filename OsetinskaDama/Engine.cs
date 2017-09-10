@@ -31,11 +31,12 @@ namespace OsetinskaDama
             randomMoveSelection = flag;
         }
 
-        public Move getBestMove(Desk desk, GameRules rules, short currentPlayer)
+        public Move getBestMove(Desk desk, GameRules rules)
         {
             movesInspected = 0;
             int topMoveScore = int.MinValue;
             int currentScore = 0;
+            short currentPlayer = desk.getCurrentPlayer();
             short oppositePlayer = rules.getOppositePlayer(currentPlayer);
             bool maximizingPlayer = false;
             ArrayList topMoves = new ArrayList();
@@ -89,7 +90,7 @@ namespace OsetinskaDama
             if (rules.isGameEnd(desk))      //check game end - both players have some fields and at least one can move
             {
                 short nextPlayer = rules.getNextPlayer(desk);
-                if (desk.getWhiteFields().Count != 0 && desk.getBlackFields().Count != 0 && nextPlayer == -1)
+                if (desk.getPlayerFields(GameVar.PLAYER_WHITE).Count != 0 && desk.getPlayerFields(GameVar.PLAYER_BLACK).Count != 0 && nextPlayer == -1)
                 {
                     return 0;       //draw, neither of players can move
                 }

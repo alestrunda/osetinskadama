@@ -57,14 +57,9 @@ namespace OsetinskaDama
             return fields;
         }
 
-        public ArrayList getWhiteFields()
+        public ArrayList getPlayerFields(short player)
         {
-            return fieldsWhite;
-        }
-
-        public ArrayList getBlackFields()
-        {
-            return fieldsBlack;
+            return player == GameVar.PLAYER_WHITE ? fieldsWhite : fieldsBlack;
         }
 
         public int getSize()
