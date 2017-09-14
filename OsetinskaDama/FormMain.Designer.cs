@@ -249,7 +249,7 @@
             this.panelGameInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGameInfo.Location = new System.Drawing.Point(510, 3);
             this.panelGameInfo.Name = "panelGameInfo";
-            this.panelGameInfo.Size = new System.Drawing.Size(290, 440);
+            this.panelGameInfo.Size = new System.Drawing.Size(290, 453);
             this.panelGameInfo.TabIndex = 2;
             // 
             // label3
@@ -267,7 +267,7 @@
             this.informationBox.Location = new System.Drawing.Point(7, 390);
             this.informationBox.Name = "informationBox";
             this.informationBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.informationBox.Size = new System.Drawing.Size(276, 43);
+            this.informationBox.Size = new System.Drawing.Size(276, 56);
             this.informationBox.TabIndex = 9;
             // 
             // groupBox1
@@ -763,7 +763,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuMain;
-            this.MinimumSize = new System.Drawing.Size(600, 510);
+            this.MinimumSize = new System.Drawing.Size(600, 525);
             this.Name = "FormMain";
             this.Text = "Osetinská dáma";
             this.ResizeEnd += new System.EventHandler(this.formMain_ResizeEnd);
