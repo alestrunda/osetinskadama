@@ -535,7 +535,7 @@ namespace OsetinskaDama
             if (movesUndoneCount == 0)
                 clearMovesHistorySelectedIndex();
             else
-                setMovesHistorySelectedIndex(movesUndoneCount - 1);
+                setMovesHistorySelectedIndex(movesUndoneCount);
             addGameNotice("move redo");
             performMove(move, cleanUndoMoves, refreshDesk, autorunAI);
             if (!gameRunning)
@@ -560,7 +560,10 @@ namespace OsetinskaDama
             movesUndone.Add(move);
             boardUnmakeMove(move);
             decrementGameSteps();
-            setMovesHistorySelectedIndex(movesUndone.Count - 1);
+            if (movesDone.Count == 0)
+                clearMovesHistorySelectedIndex();
+            else
+                setMovesHistorySelectedIndex(movesUndone.Count - 1);
             desk.undoMove(move);
             desk.setCurrentPlayer((short)desk.getPieceOwnership(move.getFrom()[0], move.getFrom()[1]));
             updatePlayerPiecesCnt(rules.getOppositePlayer(desk.getCurrentPlayer()));
@@ -948,6 +951,36 @@ namespace OsetinskaDama
             }
         }
 
+        private void handleUndoEvent()
+        {
+            int movesCnt = movesDone.Count;
+            if (movesCnt <= 0)
+                return;
+            try
+            {
+                undoMove((Move)movesDone[movesCnt - 1]);
+            }
+            catch
+            {
+                addGameNotice("Undo move failed");
+            }
+        }
+
+        private void handleRedoEvent()
+        {
+            int movesCnt = movesUndone.Count;
+            if (movesCnt <= 0)
+                return;
+            try
+            {
+                redoMove((Move)movesUndone[movesCnt - 1]);
+            }
+            catch
+            {
+                addGameNotice("Redo move failed");
+            }
+        }
+
         private void buttonSettingsSave_Click(object sender, EventArgs e)
         {
             playerWhiteControls = formSettings.playerWhiteControls;
@@ -971,32 +1004,12 @@ namespace OsetinskaDama
 
         private void buttonUndo_Click(object sender, EventArgs e)
         {
-            int movesCnt = movesDone.Count;
-            if (movesCnt <= 0)
-                return;
-            try
-            {
-                undoMove((Move)movesDone[movesCnt - 1]);
-            }
-            catch
-            {
-                addGameNotice("Undo move failed");
-            }
+            handleUndoEvent();
         }
 
         private void buttonRedo_Click(object sender, EventArgs e)
         {
-            int movesCnt = movesUndone.Count;
-            if (movesCnt <= 0)
-                return;
-            try
-            {
-                redoMove((Move)movesUndone[movesCnt - 1]);
-            }
-            catch
-            {
-                addGameNotice("Redo move failed");
-            }
+            handleRedoEvent();
         }
 
         private void gameMovesHistory_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1205,6 +1218,15 @@ namespace OsetinskaDama
             Size newSize = new Size(width, width);
             tableDeskContainer.Size = newSize;
             tableDesk.Size = newSize;
+        }
+
+        private void gameMovesHistory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+                handleUndoEvent();
+            else if (e.KeyCode == Keys.Up)
+                handleRedoEvent();
+
         }
     }
 }

@@ -299,6 +299,7 @@
             this.gameMovesHistory.Name = "gameMovesHistory";
             this.gameMovesHistory.Size = new System.Drawing.Size(254, 69);
             this.gameMovesHistory.TabIndex = 6;
+            this.gameMovesHistory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gameMovesHistory_KeyDown);
             this.gameMovesHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gameMovesHistory_MouseDoubleClick);
             // 
             // buttonUndo
