@@ -328,9 +328,11 @@ namespace OsetinskaDama
                 catch       // selected move isn't possible
                 {
                     bool cleanOutput = true;
-                    Move exampleMove = (Move)rules.getPossibleMoves(desk, desk.getCurrentPlayer())[0];
+                    ArrayList possibleMoves = rules.getPossibleMoves(desk, desk.getCurrentPlayer());
+                    Random r = new Random();
+                    Move randomMove = (Move)possibleMoves[r.Next(0, possibleMoves.Count)];
                     drawPictureBoxControl(pieceClicked, Properties.Resources.piece_control_error);
-                    addGameNotice("you could play for example " + Coords.getCoordsStr(exampleMove), cleanOutput);
+                    addGameNotice("you could play for example " + Coords.getCoordsStr(randomMove), cleanOutput);
                     addGameNotice("move " + Coords.getCoordsStr(pieceFocused) + " " + Coords.getCoordsStr(pieceClicked) + " is not possible");
                 }
                 isPieceSelectError = true;
