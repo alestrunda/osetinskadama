@@ -822,7 +822,7 @@ namespace OsetinskaDama
 
         private void addGameHistoryMove(Move move)
         {
-            gameMovesHistory.Items.Insert(0, movesDone.Count + ". " + Coords.getCoordsStr(move.getFrom()[0], move.getFrom()[1]) + " " + Coords.getCoordsStr(move.getTo()[0], move.getTo()[1]) + " " + (desk.getCurrentPlayer() == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
+            gameMovesHistory.Items.Insert(0, movesDone.Count + ". " + Coords.getCoordsStr(move) + " " + (desk.getCurrentPlayer() == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
         }
 
         private void clearGameListBoxes()
