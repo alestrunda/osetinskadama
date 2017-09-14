@@ -45,7 +45,7 @@
             this.tableGame = new System.Windows.Forms.TableLayoutPanel();
             this.panelGameInfo = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.informationBox = new System.Windows.Forms.ListBox();
+            this.gameInfo = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonRedo = new System.Windows.Forms.Button();
             this.gameMovesHistory = new System.Windows.Forms.ListBox();
@@ -242,7 +242,7 @@
             // panelGameInfo
             // 
             this.panelGameInfo.Controls.Add(this.label3);
-            this.panelGameInfo.Controls.Add(this.informationBox);
+            this.panelGameInfo.Controls.Add(this.gameInfo);
             this.panelGameInfo.Controls.Add(this.groupBox1);
             this.panelGameInfo.Controls.Add(this.groupGame);
             this.panelGameInfo.Controls.Add(this.groupPlayers);
@@ -257,18 +257,18 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 374);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Information box";
+            this.label3.Text = "Game info";
             // 
-            // informationBox
+            // gameInfo
             // 
-            this.informationBox.FormattingEnabled = true;
-            this.informationBox.Location = new System.Drawing.Point(7, 390);
-            this.informationBox.Name = "informationBox";
-            this.informationBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.informationBox.Size = new System.Drawing.Size(276, 56);
-            this.informationBox.TabIndex = 9;
+            this.gameInfo.FormattingEnabled = true;
+            this.gameInfo.Location = new System.Drawing.Point(7, 390);
+            this.gameInfo.Name = "gameInfo";
+            this.gameInfo.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.gameInfo.Size = new System.Drawing.Size(276, 56);
+            this.gameInfo.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -820,7 +820,7 @@
         private System.Windows.Forms.Label labelStepsValue;
         private System.Windows.Forms.Label labelSteps;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox informationBox;
+        private System.Windows.Forms.ListBox gameInfo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonRedo;
         private System.Windows.Forms.ListBox gameMovesHistory;

@@ -817,7 +817,7 @@ namespace OsetinskaDama
         public void addGameNotice(String notice, bool cleanOutput = false)
         {
             Char openingMark = cleanOutput ? ' ' : '-';
-            informationBox.Items.Insert(0, openingMark + " " + notice);
+            gameInfo.Items.Insert(0, openingMark + " " + notice);
         }
 
         private void addGameHistoryMove(Move move)
@@ -827,7 +827,7 @@ namespace OsetinskaDama
 
         private void clearGameListBoxes()
         {
-            informationBox.Items.Clear();
+            gameInfo.Items.Clear();
             gameMovesHistory.Items.Clear();
         }
 
