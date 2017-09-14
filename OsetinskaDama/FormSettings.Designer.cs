@@ -72,8 +72,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 198F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 186F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 186F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(325, 186);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -148,6 +148,7 @@
             // computerBlackLevel
             // 
             this.computerBlackLevel.Location = new System.Drawing.Point(9, 135);
+            this.computerBlackLevel.Maximum = 5;
             this.computerBlackLevel.Name = "computerBlackLevel";
             this.computerBlackLevel.Size = new System.Drawing.Size(104, 45);
             this.computerBlackLevel.TabIndex = 6;
@@ -223,6 +224,7 @@
             // computerWhiteLevel
             // 
             this.computerWhiteLevel.Location = new System.Drawing.Point(10, 135);
+            this.computerWhiteLevel.Maximum = 5;
             this.computerWhiteLevel.Name = "computerWhiteLevel";
             this.computerWhiteLevel.Size = new System.Drawing.Size(104, 45);
             this.computerWhiteLevel.TabIndex = 6;

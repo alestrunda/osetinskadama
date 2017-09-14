@@ -41,7 +41,7 @@ namespace OsetinskaDama
         private int minComputerPlayTime = 1000;     //ms
         private int computerWhiteLevel = 2;
         private int computerBlackLevel = 2;
-        private int bestMoveAILevelDefault = 5;
+        private int bestMoveAILevelDefault = 4;
         private int evalPiecePositionMinLevel = 3;
         private System.Windows.Forms.Timer gameTimer;
         private System.Timers.Timer aiTimer;
