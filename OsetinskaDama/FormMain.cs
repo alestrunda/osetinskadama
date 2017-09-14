@@ -276,7 +276,7 @@ namespace OsetinskaDama
                 return;
             }
             highlightMove(aiMove);
-            addGameNotice("suggested best move " + getMoveCoordsString(aiMove));
+            addGameNotice("suggested best move " + Coords.getCoordsStr(aiMove));
         }
 
         private void handlePieceClick(Object sender, EventArgs e)
@@ -288,7 +288,7 @@ namespace OsetinskaDama
             cancelAIComputing(setAIButtons);    // AI computing "show best move" could be in progress
 
             PictureBox pieceClicked = (PictureBox)sender;
-            int[] coords = getPieceCoords(pieceClicked.Name);
+            int[] coords = Coords.getPieceCoordsFromName(pieceClicked.Name);
 
             if (isPieceSelectError)
             {
@@ -327,8 +327,11 @@ namespace OsetinskaDama
                 }
                 catch       // selected move isn't possible
                 {
+                    bool cleanOutput = true;
+                    Move exampleMove = (Move)rules.getPossibleMoves(desk, desk.getCurrentPlayer())[0];
                     drawPictureBoxControl(pieceClicked, Properties.Resources.piece_control_error);
-                    addGameNotice("move " + getPieceCoordsString(pieceFocused) + " " + getPieceCoordsString(pieceClicked) + " is not possible");
+                    addGameNotice("you could play for example " + Coords.getCoordsStr(exampleMove), cleanOutput);
+                    addGameNotice("move " + Coords.getCoordsStr(pieceFocused) + " " + Coords.getCoordsStr(pieceClicked) + " is not possible");
                 }
                 isPieceSelectError = true;
             }
@@ -380,7 +383,7 @@ namespace OsetinskaDama
         {
             ArrayList possibleMoves = rules.getPossibleMoves(desk, desk.getCurrentPlayer());
             ArrayList fieldsOver;
-            int[] coordsStart = getPieceCoords(pieceStart.Name);
+            int[] coordsStart = Coords.getPieceCoordsFromName(pieceStart.Name);
             int[] coordsLast = { };
 
             tableDesk.Refresh();        // clean previously highlighted pieces
@@ -389,7 +392,7 @@ namespace OsetinskaDama
             drawPictureBoxControl(pieceStart, Properties.Resources.piece_control_select);
             if (piecesOver.Count > 0)
             {
-                coordsLast = getPieceCoords(((PictureBox)piecesOver[piecesOver.Count - 1]).Name);
+                coordsLast = Coords.getPieceCoordsFromName(((PictureBox)piecesOver[piecesOver.Count - 1]).Name);
                 foreach (PictureBox piece in piecesOver)
                 {
                     drawPictureBoxControl(piece, Properties.Resources.piece_control_select);
@@ -432,8 +435,8 @@ namespace OsetinskaDama
         {
             ArrayList fieldsOver;
             ArrayList possibleMoves = rules.getPossibleMoves(desk, desk.getCurrentPlayer());
-            int[] coordsStart = getPieceCoords(pieceStart.Name);
-            int[] coordsEnd = getPieceCoords(pieceEnd.Name);
+            int[] coordsStart = Coords.getPieceCoordsFromName(pieceStart.Name);
+            int[] coordsEnd = Coords.getPieceCoordsFromName(pieceEnd.Name);
             foreach (Move move in possibleMoves)
             {
                 fieldsOver = move.getOverFields();
@@ -449,8 +452,8 @@ namespace OsetinskaDama
 
         private void makeHumanMove(PictureBox pieceStart, PictureBox pieceEnd, ArrayList piecesOver)
         {
-            int[] coordsStart = getPieceCoords(pieceStart.Name);
-            int[] coordsEnd = getPieceCoords(pieceEnd.Name);
+            int[] coordsStart = Coords.getPieceCoordsFromName(pieceStart.Name);
+            int[] coordsEnd = Coords.getPieceCoordsFromName(pieceEnd.Name);
             int[] coordsOver;
             int fieldsOverCnt;
             ArrayList fieldsOver;
@@ -466,7 +469,7 @@ namespace OsetinskaDama
                     continue;
                 for (int i = 0; i < fieldsOverCnt; i++)
                 {
-                    coordsOver = getPieceCoords(((PictureBox)piecesOver[i]).Name);
+                    coordsOver = Coords.getPieceCoordsFromName(((PictureBox)piecesOver[i]).Name);
                     if ((int)(fieldsOver[i] as Array).GetValue(0) != coordsOver[0] || (int)(fieldsOver[i] as Array).GetValue(1) != coordsOver[1])
                         continue;
                 }
@@ -628,7 +631,7 @@ namespace OsetinskaDama
             piece_end.BackgroundImage = piece_start.BackgroundImage;
             piece_start.BackgroundImage = null;
             changePlayerPieces(move.getRemoveFields(), rules.getOppositePlayer((short)player));
-            addGameNotice((player == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text) + " moves " + getMoveCoordsString(move));
+            addGameNotice((player == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text) + " moves " + Coords.getCoordsStr(move));
         }
 
         private void boardUnmakeMove(Move move)
@@ -641,7 +644,7 @@ namespace OsetinskaDama
             piece_start.BackgroundImage = piece_end.BackgroundImage;
             piece_end.BackgroundImage = null;
             changePlayerPieces(move.getRemoveFields(), rules.getOppositePlayer((short)player), restoreOriginalBg);
-            addGameNotice("move canceled " + getMoveCoordsString(move) + " by " + (player == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
+            addGameNotice("move canceled " + Coords.getCoordsStr(move) + " by " + (player == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
         }
 
         private void changePlayerPieces(ArrayList fields, int player, bool restoreBg = false)
@@ -709,30 +712,6 @@ namespace OsetinskaDama
                 g.DrawString(pieceStr, new Font("Arial", textSize), new SolidBrush(Color.Black), new Point(textOffsetX, textOffsetY));
             }
             g.DrawImage(pieceControl, new Rectangle(new Point(0, 0), new Size(pictureBox.Width, pictureBox.Height)));
-        }
-
-        private int[] getPieceCoords(String name)
-        {
-            String[] coords = name.Replace("piece", "").Split('-');
-            Int32.TryParse(coords[0], out int x);
-            Int32.TryParse(coords[1], out int y);
-            return new int[2] { x, y };
-        }
-
-        private String getPieceCoordsString(PictureBox piece)
-        {
-            int[] coords = getPieceCoords(piece.Name);
-            return getCoordsString(coords[0], coords[1]);
-        }
-
-        private String getMoveCoordsString(Move move)
-        {
-            return getCoordsString(move.getFrom()[0], move.getFrom()[1]) + " " + getCoordsString(move.getTo()[0], move.getTo()[1]);
-        }
-
-        private String getCoordsString(int x, int y)
-        {
-            return (char)((int)GameVar.LetterXStart + x) + (y + 1).ToString();
         }
 
         private void resetPiecesBg()
@@ -833,14 +812,15 @@ namespace OsetinskaDama
             labelTimerValue.Text = gameTimerValue + "s";
         }
 
-        public void addGameNotice(String notice)
+        public void addGameNotice(String notice, bool cleanOutput = false)
         {
-            informationBox.Items.Insert(0, "- " + notice);
+            Char openingMark = cleanOutput ? ' ' : '-';
+            informationBox.Items.Insert(0, openingMark + " " + notice);
         }
 
         private void addGameHistoryMove(Move move)
         {
-            gameMovesHistory.Items.Insert(0, movesDone.Count + ". " + getCoordsString(move.getFrom()[0], move.getFrom()[1]) + " " + getCoordsString(move.getTo()[0], move.getTo()[1]) + " " + (desk.getCurrentPlayer() == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
+            gameMovesHistory.Items.Insert(0, movesDone.Count + ". " + Coords.getCoordsStr(move.getFrom()[0], move.getFrom()[1]) + " " + Coords.getCoordsStr(move.getTo()[0], move.getTo()[1]) + " " + (desk.getCurrentPlayer() == GameVar.PLAYER_WHITE ? playerWhiteName.Text : playerBlackName.Text));
         }
 
         private void clearGameListBoxes()
