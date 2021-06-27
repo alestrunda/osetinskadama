@@ -1,6 +1,6 @@
 # Osetinská Dáma
 
-Desk game simular to Checkers.
+Desk game similar to Checkers. Desktop application.
 
 Created as a school project in: Projektový seminář (IPS), Univerzita Palackého v Olomouci
 
